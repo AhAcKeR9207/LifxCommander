@@ -1,17 +1,15 @@
 package control.lifx.LifxCommander;
 
 import java.io.IOException;
+import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.NetworkInterface;
 import java.net.InterfaceAddress;
 import java.net.InetAddress;
-import java.net.DatagramPacket;
+import java.net.NetworkInterface;
 import java.util.Enumeration;
 
 public class ControlMethods {
-	public static int port = 56700;
-	
-	public static void sendBroadcastMessage(byte[] messageByteArray) throws IOException {
+	static public void sendBroadcastMessage(byte[] messageByteArray, int port) throws IOException {
 		DatagramSocket socket = new DatagramSocket();
 		socket.setBroadcast(true);
 		
@@ -34,7 +32,7 @@ public class ControlMethods {
 		socket.close();
 	}
 	
-	public static void sendUdpMessage(String message, String ipAddress) throws IOException {
+	static public void sendUdpMessage(String message, String ipAddress, int port) throws IOException {
 		byte[] messageByteArray = CommonMethods.convertHexStringToByteArray(message);
 		InetAddress address = InetAddress.getByName(ipAddress);
 		DatagramPacket packet = new DatagramPacket(messageByteArray, messageByteArray.length, address, port);
@@ -43,7 +41,7 @@ public class ControlMethods {
 		socket.close();	
 	}
 	
-	public static void sendUdpMessage(byte[] messageByteArray, String ipAddress) throws IOException {
+	static public void sendUdpMessage(byte[] messageByteArray, String ipAddress, int port) throws IOException {
 		InetAddress address = InetAddress.getByName(ipAddress);
 		DatagramPacket packet = new DatagramPacket(messageByteArray, messageByteArray.length, address, port);
 		DatagramSocket socket = new DatagramSocket();
@@ -51,7 +49,7 @@ public class ControlMethods {
 		socket.close();	
 	}
 	
-	public static byte[] receiveUdpMessage() throws IOException{
+	static public byte[] receiveUdpMessage(int port) throws IOException{
 		DatagramSocket socket = new DatagramSocket(port);
 		byte[] data = new byte[1500];
 			
@@ -59,7 +57,6 @@ public class ControlMethods {
 		while(true) {
 			socket.receive(packet);
 			socket.close();
-			
 			return packet.getData();
 		}
 	}	

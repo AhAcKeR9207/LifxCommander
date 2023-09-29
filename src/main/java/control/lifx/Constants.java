@@ -1,6 +1,8 @@
 package control.lifx;
 
 public class Constants {
+	public static final int PORT = 56700;
+	
 	public class Levels {
 		public static final int MIN = 0;
 		public static final int MAX = 65535;

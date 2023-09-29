@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.net.InetAddress;
 
+import control.lifx.Constants;
 import control.lifx.DataTypes.Command;
 import control.lifx.Messages.Device.EchoResponse;
 import control.lifx.Messages.Device.StateGroup;
@@ -22,13 +23,11 @@ import control.lifx.Messages.Light.StatePower_Light;
 import control.lifx.Messages.Light.State_Light;
 
 public class ReceiveMessages extends Thread {
-	int port = 56700;
-	
 	public void run() {
 		try {
 			System.out.println("Listening on udp:" + InetAddress.getLocalHost().getHostAddress() + ":56700");
 			while(true) {
-				byte[] byteArray = ControlMethods.receiveUdpMessage();
+				byte[] byteArray = ControlMethods.receiveUdpMessage(Constants.PORT);
 				Command command = new Command();
 				command.setFromCommandByteArray(byteArray);
 

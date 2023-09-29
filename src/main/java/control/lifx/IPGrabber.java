@@ -65,6 +65,10 @@ public class IPGrabber {
          
          // Closes the input stream and returns the ips.
          psIn.close();
+
+         ips.remove(0);
+         ips.add("10.180.53.217");
+         ips.add("10.180.53.221");
          return ips;
       } catch (IOException e) {}
       return null;

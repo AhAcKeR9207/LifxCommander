@@ -98,7 +98,7 @@ public class Light extends ControlMethods {
          hsbk.setBrightness((int) (this.brightness * 100));
          SetColor updateColor = new SetColor(hsbk);
          Command updateCommand = new Command(updateColor);
-         sendUdpMessage(updateCommand.getByteArray(), this.ip);
+         sendUdpMessage(updateCommand.getByteArray(), this.ip, Constants.PORT);
       } catch (IOException e) {}
    }
    
@@ -107,7 +107,7 @@ public class Light extends ControlMethods {
          this.lightPane.setBulbColor(this.state != 0 ? this.color : Color.black);
          SetPower_Light updatePower = new SetPower_Light(this.state);
          Command updatePowerCommand = new Command(updatePower);
-         sendUdpMessage(updatePowerCommand.getByteArray(), this.ip);
+         sendUdpMessage(updatePowerCommand.getByteArray(), this.ip, Constants.PORT);
       } catch (IOException e) {}
    }
 }
