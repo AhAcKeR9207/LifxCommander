@@ -19,10 +19,10 @@ public class Main {
 
       // Creates an object for each of the found lights
       ArrayList<Light> lights = new ArrayList<Light>();
-      for (String ip : ips) {
+      ips.forEach((ip) -> {
          System.out.println(ip);
-         lights.add(new Light(ip, Color.white));
-      }
+         lights.add(new Light(ip, Color.red));
+      });
 
       System.out.println("Loading GUI...");
       new LifxGUI(lights);
