@@ -3,7 +3,6 @@ package control.lifx;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import control.lifx.GUI.LifxGUI;
 import control.lifx.LifxCommander.ReceiveMessages;
 
 public class Main {
@@ -24,8 +23,8 @@ public class Main {
          lights.add(new Light(ip, Color.red));
       });
 
-      System.out.println("Loading GUI...");
-      new LifxGUI(lights);
+      System.out.println("Initializing the text interface...");
+      
       
       System.out.println("Done!");
    }

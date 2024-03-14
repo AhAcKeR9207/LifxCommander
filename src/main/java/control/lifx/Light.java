@@ -2,23 +2,14 @@ package control.lifx;
 
 import java.awt.Color;
 import java.io.IOException;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
 
 import control.lifx.DataTypes.Command;
 import control.lifx.DataTypes.HSBK;
-import control.lifx.GUI.Components.ColorButton;
-import control.lifx.GUI.Components.LightPane;
-import control.lifx.GUI.Components.NullPanel;
-import control.lifx.GUI.Components.Slider;
-import control.lifx.GUI.Components.ToggleButton;
 import control.lifx.LifxCommander.ControlMethods;
 import control.lifx.Messages.Light.SetColor;
 import control.lifx.Messages.Light.SetPower_Light;
 
 public class Light extends ControlMethods {
-   private JPanel panel;
-   private LightPane lightPane;
    private String ip;
    private Color color;
    private double brightness;
@@ -29,18 +20,6 @@ public class Light extends ControlMethods {
       this.color = color;
       brightness = 1;
       state = Constants.Power.ON;
-      lightPane = new LightPane() {};
-      panel = new JPanel();
-
-      panel.add(lightPane);
-      panel.add(new ToggleButton(this));
-      panel.add(new Slider(this));
-      panel.add(new ColorButton(this));
-      panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-      if (this.ip == null) {
-         this.panel = new NullPanel();
-      }
 
       updateColor();
       updateState();
@@ -73,10 +52,6 @@ public class Light extends ControlMethods {
       return this.color;
    }
 
-   public JPanel getPanel() {
-      return this.panel;
-   }
-   
    public boolean getState() {
       if (this.state == 0) {
          return true;
@@ -92,7 +67,6 @@ public class Light extends ControlMethods {
             Math.max((int)(this.color.getGreen() * brightness), 0),
             Math.max((int)(this.color.getBlue() * brightness), 0)
          );
-         this.lightPane.setBulbColor(newColor);
          
          HSBK hsbk = HSBK.RGBtoHSBK(this.color);
          hsbk.setBrightness((int) (this.brightness * 100));
@@ -104,7 +78,6 @@ public class Light extends ControlMethods {
    
    private void updateState() {
       try {
-         this.lightPane.setBulbColor(this.state != 0 ? this.color : Color.black);
          SetPower_Light updatePower = new SetPower_Light(this.state);
          Command updatePowerCommand = new Command(updatePower);
          sendUdpMessage(updatePowerCommand.getByteArray(), this.ip, Constants.PORT);
