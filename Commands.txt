@@ -1,56 +1,53 @@
 Overall Tips:
 Objects can be given aliases.  However, any created aliases cannot match varaible names or commands.
+You cannot name objects or commands with spaces.
 This check is also performed when renaming variables, so nothing will have the same name.
 
 Command: addLight
 Function: Creates a new light object.
 Usage: addLight <lightName> <ipAddress> [options...]
-        -c, --color <color>      The new color of the light as a hex RGB String (EX: "#000000")
-        -h, --help               Displays this help message
-        -k, --kelvin <kelvin>    The new kelvin value of the light (2500 to 9000)
-        -s, --state <state>      The new state of the light (1, 0, "true", or "false")
+        -c <color>     The new color of the light as a hex RGB String (EX: "#000000")
+        -h             Displays this help message
+        -s <state>     The new state of the light (1, 0, "true", or "false")
 
 Command: modLight
 Function: Allows users to modify attributes of a light such as its name, IP, color, and state.
 Usage: modLight <lightName> [options...]
-        -c, --color <color>          The new color of the light as a hex RGB String (EX: "#000000")
-        -h, --help                   Displays this help message
-        -i, --ip-address <ipaddr>    The new IP Address of the light
-        -k, --kelvin <kelvin>        The new kelvin value of the light (2500 to 9000)
-        -n, --name <name>            The new name of the light
-        -s, --state <state>          The new state of the light (1, 0, "true", or "false")
+        -c <color>     The new color of the light as a hex RGB String (EX: "#000000")
+        -h             Displays this help message
+        -i <ipaddr>    The new IP Address of the light
+        -n <name>      The new name of the light
+        -s <state>     The new state of the light (1, 0, "true", or "false")
 
 Command: delLight
 Function: Deletes a light object.
 Usage: delLight <lightName>
-        -h, --help    Displays this help message
+        -h    Displays this help message
 
 Command: addPattern
 Function: Creates a new pattern object.
 Usage: addPattern <patternName> [options...]
-        -a, --add-light <lightName>    The name of a light to add to the pattern (can be repeated)
-        -c, --color <color>            The color the lights will be while the pattern is running as a hex RGB String (EX: "#000000")
-        -d, --duration <seconds>       The amount of time the pattern should run
-        -h, --help                     Displays this help message
-        -k, --kelvin <kelvin>          The kelvin value the lights will have while the pattern is running (2500 to 9000)
-        -s, --state <state>            The state the lights will be while the pattern is running (1, 0, "true", or "false")
+        -a <lightName>    The name of a light to add to the pattern (can be repeated)
+        -c <color>        The color the lights will be while the pattern is running as a hex RGB String (EX: "#000000")
+        -d <seconds>      The amount of time the pattern should run
+        -h                Displays this help message
+        -s <state>        The state the lights will be while the pattern is running (1, 0, "true", or "false")
 
 Command: modPattern
 Function: Allows users to modify attributes of a pattern such as its name, color, affected lights, and more.
 Usage: modPattern <patternName> [options...]
-        -a, --add-light <lightName>       The name of a light to add to the sequence (can be repeated)
-        -c, --color <color>               The color the lights will be while the pattern is running as a hex RGB String (EX: "#000000")
-        -d, --duration <seconds>          The amount of time the pattern should run in seconds
-        -h, --help                        Displays this help message
-        -k, --kelvin <kelvin>             The kelvin value the lights will have while the pattern is running (2500 to 9000)
-        -n, --name <name>                 The new name of the pattern
-        -r, --remove-light <lightName>    The name of a light to remove from the sequence (can be repeated)
-        -s, --state <state>               The state the lights will be while the pattern is running (1, 0, "true", or "false")
+        -a <lightName>    The name of a light to add to the sequence (can be repeated)
+        -c <color>        The color the lights will be while the pattern is running as a hex RGB String (EX: "#000000")
+        -d <seconds>      The amount of time the pattern should run in seconds
+        -h                Displays this help message
+        -n <name>         The new name of the pattern
+        -r <lightName>    The name of a light to remove from the sequence (can be repeated)
+        -s <state>        The state the lights will be while the pattern is running (1, 0, "true", or "false")
 
 Command: delPattern
 Function: Deletes a pattern object.
 Usage: delPattern <patternName>
-        -h, --help    Displays this help message
+        -h    Displays this help message
 
 Command: addPatternGroup
 Function: Creates a new pattern group object.
@@ -60,10 +57,10 @@ Group Types:
     If the user doesn't specify a valid type, then the type will default to sequential.
     Sequential mode: Runs each pattern one after the other, ending when the patterns finish or the duration of the pattern group expires.
 Usage: addPatternGroup <groupName> [options...]
-        -a, --add-pattern <patternName>    The name of the patterns to add to the group (can be repeated)
-        -d, --duration <seconds>           The amount of time the pattern group should run in seconds (overrides any previous times set)
-        -h, --help                         Displays this help message
-        -t, --type <groupType>                The new type of the pattern group
+        -a <patternName>    The name of the patterns to add to the group (can be repeated)
+        -d <seconds>        The amount of time the pattern group should run in seconds (overrides any previous times set)
+        -h                  Displays this help message
+        -t <groupType>      The new type of the pattern group
 
 Command: modPatternGroup
 Function: Allows users to modify attributes of a pattern group such as its name, type, affected patterns, and more.
@@ -73,55 +70,55 @@ Group Types:
     If the user doesn't specify a valid type, then the type will default to sequential.
     Sequential mode: Runs each pattern one after the other, ending when the patterns finish or the duration of the pattern group expires.
 Usage: modPatternGroup <groupName> [options...]
-        -a, --add-pattern <patternName>       The name of any patterns to add to the group (can be repeated)
-        -d, --duration <seconds>              The amount of time the pattern group should run in seconds (overrides any previous times set)
-        -h, --help                            Displays this help message
-        -n, --name <groupName>                The new name of the pattern group
-        -r, --remove-pattern <patternName>    The name of any patterns to remove from the group (can be repeated)
-        -t, --type <groupType>                The new type of the pattern group
+        -a <patternName>    The name of any patterns to add to the group (can be repeated)
+        -d <seconds>        The amount of time the pattern group should run in seconds (overrides any previous times set)
+        -h                  Displays this help message
+        -n <groupName>      The new name of the pattern group
+        -r <patternName>    The name of any patterns to remove from the group (can be repeated)
+        -t <groupType>      The new type of the pattern group
 
 Command: delPatternGroup
 Function: Deletes a pattern group object.
 Usage: delPatternGroup <groupName>
-        -h, --help    Displays this help message
+        -h    Displays this help message
 
 Command: addSequence
 Function: Creates a new sequence object.
 Usage: addSequence <sequenceName>
-        -a, --add-pattern <patternName>    The name of a pattern or pattern group to add to the sequence (can be repeated)
-                                           Check the help page of the "addPatternGroup" or "modPatternGroup" commands for info
-                                           on patternGroups and running two patterns at once.
-        -d, --duration <seconds>           The amount of time the sequence should run in seconds (overrides any previous times set)
-        -h, --help                         Displays this help message
+        -a <patternName>    The name of a pattern or pattern group to add to the sequence (can be repeated)
+                            Check the help page of the "addPatternGroup" or "modPatternGroup" commands for info
+                            on patternGroups and running two patterns at once.
+        -d <seconds>        The amount of time the sequence should run in seconds (overrides any previous times set)
+        -h                  Displays this help message
 
 Command: modSequence
 Function: Allows users to modify attributes of a sequence such as its name, affected patterns, and duration.
 Usage: modSequence <sequenceName> [options...]
-        -a, --add-pattern <patternName>       The name of a pattern or pattern group to add to the sequence (can be repeated)
-        -d, --duration <seconds>              The amount of time the pattern group should run in seconds (overrides any previous times set)
-        -h, --help                            Displays this help message
-        -n, --name <sequenceName>             The new name of the sequence.
-        -r, --remove-pattern <patternName>    The name of a pattern or pattern group to remove from the sequence (can be repeated)
+        -a <patternName>     The name of a pattern or pattern group to add to the sequence (can be repeated)
+        -d <seconds>         The amount of time the pattern group should run in seconds (overrides any previous times set)
+        -h                   Displays this help message
+        -n <sequenceName>    The new name of the sequence.
+        -r <patternName>     The name of a pattern or pattern group to remove from the sequence (can be repeated)
 
 Command: delSequence
 Function: Deletes a sequence object.
 Usage: delSequence <sequenceName>
-        -h, --help    Displays this help message
+        -h    Displays this help message
 
 Command: runSequence
 Function: Runs the specified sequence.
 Usage: runSequence <sequenceName> [options...]
-        -h, --help             Displays this help message
-        -s, --sequence-name    The name of the sequence to run
-        -d, --duration         The amount of time the pattern group should run in seconds (overrides any previous times set)
+        -h    Displays this help message
+        -s    The name of the sequence to run
+        -d    The amount of time the pattern group should run in seconds (overrides any previous times set)
 
 Command: alias
 Function: Allows the user to rename commands with some exceptions.  The user cannot name a command after an already existing keyword.
 Usage: alias [options...]
-        -h, --help                 Displays this help message
-        -l, --list                 Lists all created aliases
-        -n, --name <name>          The name of the alias
-        -c, --command <command>    The command that the alias will run
+        -h              Displays this help message
+        -l              Lists all created aliases
+        -n <name>       The name of the alias
+        -c <command>    The command that the alias will run
 
 Command: help
 Function: Displays this help message regarding all the commands available to the user
