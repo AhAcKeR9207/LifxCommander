@@ -9,4 +9,7 @@ import java.util.function.Consumer;
 public class Dynamic {
     public static HashMap<String, Consumer<String[]>> commands = new HashMap<String, Consumer<String[]>>();
     public static HashMap<String, Light> lightDict = new HashMap<String, Light>();
+    // public static HashMap<String, Light> lightDict = new HashMap<String, Light>();
+    // public static HashMap<String, Light> lightDict = new HashMap<String, Light>();
+    // public static HashMap<String, Light> lightDict = new HashMap<String, Light>();
 }

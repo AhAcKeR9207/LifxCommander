@@ -13,13 +13,13 @@ public class Light extends ControlMethods {
    private String ip;
    private Color color;
    private double brightness;
-   private int state;
+   private boolean state;
    
-   public Light(String ip, Color color) {
+   public Light(String ip, Color color, boolean state) {
       this.ip = ip;
       this.color = color;
       brightness = 1;
-      state = Constants.Power.ON;
+      this.state = state;
 
       updateColor();
       updateState();
@@ -36,11 +36,7 @@ public class Light extends ControlMethods {
    }
    
    public void setState(boolean state) {
-      if (state) {
-         this.state = Constants.Power.ON;
-      } else {
-         this.state = Constants.Power.OFF;
-      }
+      this.state = state;
       updateState();
    }
    
@@ -53,11 +49,7 @@ public class Light extends ControlMethods {
    }
 
    public boolean getState() {
-      if (this.state == 0) {
-         return true;
-      }
-   
-      return false;
+      return this.state;
    }
    
    private void updateColor() {
@@ -78,7 +70,7 @@ public class Light extends ControlMethods {
    
    private void updateState() {
       try {
-         SetPower_Light updatePower = new SetPower_Light(this.state);
+         SetPower_Light updatePower = new SetPower_Light(this.state ? Constants.Power.ON : Constants.Power.OFF);
          Command updatePowerCommand = new Command(updatePower);
          sendUdpMessage(updatePowerCommand.getByteArray(), this.ip, Constants.PORT);
       } catch (IOException e) {}
