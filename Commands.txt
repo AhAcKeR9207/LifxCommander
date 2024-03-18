@@ -1,5 +1,5 @@
 Overall Tips:
-Objects can be given aliases.  However, any created aliases cannot match varaible names or commands.
+Objects can be given aliases.  However, any created aliases cannot match variable names or commands.
 You cannot name objects or commands with spaces.
 This check is also performed when renaming variables, so nothing will have the same name.
 
@@ -13,11 +13,11 @@ Usage: addLight <lightName> <ipAddress> [options...]
 Command: modLight
 Function: Allows users to modify attributes of a light such as its name, IP, color, and state.
 Usage: modLight <lightName> [options...]
-        -c <color>     The new color of the light as a hex RGB String (EX: "#000000")
-        -h             Displays this help message
-        -i <ipaddr>    The new IP Address of the light
-        -n <name>      The new name of the light
-        -s <state>     The new state of the light (1, 0, "true", or "false")
+        -c <color>        The new color of the light as a hex RGB String (EX: "#000000")
+        -h                Displays this help message
+        -i <ipAddress>    The new IP Address of the light
+        -n <name>         The new name of the light
+        -s <state>        The new state of the light (1, 0, "true", or "false")
 
 Command: delLight
 Function: Deletes a light object.
