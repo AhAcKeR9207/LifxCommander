@@ -1,3 +1,5 @@
 -- TODO
     Add the rest of the native commands.
     Allow command chaining using "&&" or semicolons.
+    Add the input loop.
+    Send TCP requests to lights based off of the commands that have run.
