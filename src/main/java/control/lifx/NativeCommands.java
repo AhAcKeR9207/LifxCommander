@@ -1,5 +1,7 @@
 package control.lifx;
 
+import static control.lifx.Dynamic.lightDict;
+
 import java.awt.Color;
 import java.util.List;
 
@@ -21,6 +23,14 @@ public class NativeCommands {
         Color color = Color.WHITE;
         boolean state = true;
 
+        // Checking if the help tag has been used.
+        int helpPos = args.indexOf("-h");
+        if (helpPos > -1) {
+            // Prints the help message and returns to the InputManager.
+            helpMsg("addLight");
+            return;
+        }
+
         // Checking if the color has been specified.
         int colorPos = args.indexOf("-c");
         if (colorPos > -1) {
@@ -30,17 +40,10 @@ public class NativeCommands {
             color = new Color(rgbInts & 0xFF, (rgbInts >> 8) & 0xFF, (rgbInts >> 16) & 0xFF);
         }
 
-        // Checking if the help tag has been used.
-        int helpPos = args.indexOf("-h");
-        if (helpPos > -1) {
-            // Prints the help message and returns to the InputManager.
-            helpMsg("addLight");
-            return;
-        }
-
+        // Checking if the state has been specified.
         int statePos = args.indexOf("-s");
         if (statePos > -1) {
-
+            // Switching the value of the state command.
             switch (args.get(statePos + 1).toLowerCase()) {
                 case "1":
                 case "true":
@@ -53,7 +56,8 @@ public class NativeCommands {
             }
         }
 
-        Dynamic.lightDict.put(lightName, new Light(ipAddress, color, state));
+        // Adding the light to the dictionary in Dynamic
+        lightDict.put(lightName, new Light(ipAddress, color, state));
     }
 
 
