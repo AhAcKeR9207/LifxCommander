@@ -1,8 +1,5 @@
 package control.lifx;
 
-import java.awt.Color;
-import java.util.ArrayList;
-
 import control.lifx.LifxCommander.ReceiveMessages;
 
 public class Main {

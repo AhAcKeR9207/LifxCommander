@@ -4,7 +4,6 @@ import static control.lifx.Dynamic.commands;
 
 import java.util.Scanner;
 import java.util.function.Consumer;
-import java.util.function.BiFunction;
 
 public class InputManager {
     Scanner scanner = new Scanner(System.in);
