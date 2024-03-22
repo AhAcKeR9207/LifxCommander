@@ -1,0 +1,3 @@
+-- TODO
+    Add the rest of the native commands.
+    Allow command chaining using "&&" or semicolons.
