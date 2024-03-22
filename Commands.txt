@@ -113,12 +113,17 @@ Usage: runSequence <sequenceName> [options...]
         -d    The amount of time the pattern group should run in seconds (overrides any previous times set)
 
 Command: alias
-Function: Allows the user to rename commands with some exceptions.  The user cannot name a command after an already existing keyword.
+Function:
+    Allows the user to rename commands and objects with some exceptions.
+    Exception No 1: The user cannot name a command/object after an existing command/object.
+    Exception No 2: The user cannot put spaces into the new name of a command/object.
+    Exception No 3: You cannot use both the -c and -o ticks in the same line.
 Usage: alias [options...]
+        -c <command>    The command that the alias will reference
         -h              Displays this help message
         -l              Lists all created aliases
         -n <name>       The name of the alias
-        -c <command>    The command that the alias will run
+        -o <object>     The object that the alias will reference
 
 Command: help
 Function: Displays this help message regarding all the commands available to the user
