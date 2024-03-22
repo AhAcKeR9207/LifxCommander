@@ -1,8 +1,3 @@
-Overall Tips:
-Objects can be given aliases.  However, any created aliases cannot match variable names or commands.
-You cannot name objects or commands with spaces.
-This check is also performed when renaming variables, so nothing will have the same name.
-
 Command: addLight
 Function: Creates a new light object.
 Usage: addLight <lightName> <ipAddress> [options...]
