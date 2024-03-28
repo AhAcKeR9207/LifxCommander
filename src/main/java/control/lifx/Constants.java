@@ -1,5 +1,7 @@
 package control.lifx;
 
+import java.awt.Color;
+
 public class Constants {
 	public static final int PORT = 56700;
 	
@@ -26,5 +28,12 @@ public class Constants {
 		public static final int HALF_SINE = 2;
 		public static final int TRIANGLE = 3;
 		public static final int PULSE = 4;
+	}
+
+	public static class Defaults {
+		public static final int BRIGHTNESS = 100;
+		public static final Color COLOR = Color.WHITE;
+		public static final double DURATION = 10;
+		public static final boolean STATE = true;
 	}
 }
