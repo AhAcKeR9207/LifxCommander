@@ -1,16 +1,17 @@
-package control.lifx;
+package control.lifx.Objects;
 
 import static control.lifx.LifxCommander.ControlMethods.sendUdpMessage;
 
 import java.awt.Color;
 import java.io.IOException;
 
+import control.lifx.Constants;
 import control.lifx.DataTypes.Command;
 import control.lifx.DataTypes.HSBK;
 import control.lifx.Messages.Light.SetColor;
 import control.lifx.Messages.Light.SetPower_Light;
 
-public class Light {
+public class Light extends Aliasable {
     // Instance variables
     private String ip;
     private Color color;
