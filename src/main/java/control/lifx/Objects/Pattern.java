@@ -3,7 +3,7 @@ package control.lifx.Objects;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public class Pattern extends Aliasable {
+public class Pattern { // extends Aliasable {
     // Instance variables
     private ArrayList<String> lightNames;
     private int brightness;

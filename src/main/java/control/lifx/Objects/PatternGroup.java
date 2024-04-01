@@ -2,7 +2,7 @@ package control.lifx.Objects;
 
 import java.util.ArrayList;
 
-public class PatternGroup extends Aliasable {
+public class PatternGroup { // extends Aliasable {
     /**
      * These are the enums that determine what type of PatternGroup is running.
      */

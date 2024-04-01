@@ -11,7 +11,7 @@ import control.lifx.DataTypes.HSBK;
 import control.lifx.Messages.Light.SetColor;
 import control.lifx.Messages.Light.SetPower_Light;
 
-public class Light extends Aliasable {
+public class Light { // extends Aliasable {
     // Instance variables
     private String ip;
     private Color color;
