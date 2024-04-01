@@ -1,6 +1,7 @@
 package control.lifx.Input;
 
 import static control.lifx.Dynamic.lightDict;
+import static control.lifx.Dynamic.patternDict;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class Handler {
         // Checking if the help tag has been used.
         int helpPos = args.indexOf("-h");
         if (helpPos > -1) {
-            // Printing the help message and returning to the InputManager.
+            // Printing the help message and returns to the InputManager.
             helpMsg("addLight");
             return;
         }
@@ -42,7 +43,7 @@ public class Handler {
         // Checking if the brightness has been specified.
         int brightnessPos = args.indexOf("-b");
         if (brightnessPos > -1) {
-            // Changing the brightness to the specified value
+            // Changing the brightness to the specified value.
             brightness = Integer.parseInt(args.get(brightnessPos + 1));
         }
 
@@ -52,7 +53,7 @@ public class Handler {
             // Getting the rgb int
             int rgb = Integer.parseInt(args.get(colorPos + 1).replaceAll("#", ""));
 
-            // Changing the color to the specified value
+            // Changing the color to the specified value.
             color = new Color(rgb);
         }
 
@@ -61,18 +62,16 @@ public class Handler {
         if (statePos > -1) {
             // Switching the value of the state command.
             switch (args.get(statePos + 1).toLowerCase()) {
-                case "1":
-                case "true":
+                case "1", "true":
                     state = true;
                     break;
-                case "0":
-                case "false":
+                case "0", "false":
                     state = false;
                     break;
             }
         }
 
-        // Adding the light to the dictionary in Dynamic.
+        // Adding the new light to the dictionary in Dynamic.
         lightDict.put(lightName, new Light(ipAddress, color, brightness, state));
     }
 
@@ -206,7 +205,7 @@ public class Handler {
         // Checking if the brightness tag has been used.
         int brightnessPos = args.indexOf("-b");
         if (brightnessPos > -1) {
-            // Changing the brightness to the specified value
+            // Changing the brightness to the specified value.
             brightness = Integer.parseInt(args.get(brightnessPos + 1));
         }
 
@@ -216,30 +215,32 @@ public class Handler {
             // Getting the rgb int
             int rgb = Integer.parseInt(args.get(colorPos + 1).replaceAll("#", ""));
 
-            // Changing the color to the specified value
+            // Changing the color to the specified value.
             color = new Color(rgb);
         }
 
         // Checking if the help tag has been used.
         int durationPos = args.indexOf("-d");
         if (durationPos > -1) {
-            // Changing the duration to the specified value
+            // Changing the duration to the specified value.
             duration = Integer.parseInt(args.get(durationPos + 1));
         }
 
         // Checking if the help tag has been used.
         int statePos = args.indexOf("-s");
         if (statePos > -1) {
-            // Changing the state to the specified value
+            // Changing the state to the specified value.
             switch(args.get(statePos + 1)) {
                 case "1", "true":
                     state = true;
+                    break;
                 case "0", "false":
                     state = false;
+                    break;
             }
         }
 
-        // Adding the new pattern to the dictionary.
+        // Adding the new pattern to the dictionary in Dynamic.
         Dynamic.patternDict.put(patternName, new Pattern(lightNames, brightness, color, duration, state));
     }
 
@@ -249,7 +250,97 @@ public class Handler {
      * @param args A list of arguments for the command.
      */
     public static void modPattern(ArrayList<String> args) {
+        // Getting the name of the pattern.
+        String patternName = args.get(0);
 
+        // Getting the pattern from patternDict.
+        Pattern pattern = patternDict.get(patternName);
+        
+        // Checking if the help tag has been used.
+        int helpPos = args.indexOf("-h");
+        if (helpPos > -1) {
+            // Printing the help message and returning to the InputManager.
+            helpMsg("modPattern");
+            return;
+        }
+        
+        // Checking if the add tag has been used.
+        int addPos = args.indexOf("-a");
+        // Since this tag can be repeated, we will make a loop to find all instances of it.
+        while (addPos > -1) {
+            // Adding the light names to the array.
+            pattern.addLight(args.get(addPos + 1));
+
+            // Removing this add tag and its value
+            args.remove(addPos);
+            args.remove(addPos);
+
+            // Checking for another add tag
+            addPos = args.indexOf("-a");
+        }
+
+
+        // Checking if the brightness has been specified.
+        int brightnessPos = args.indexOf("-b");
+        if (brightnessPos > -1) {
+            // Changing the brightness to the specified value
+            pattern.setBrightness(Integer.parseInt(args.get(brightnessPos + 1)));
+        }
+
+        // Checking if the color has been specified.
+        int colorPos = args.indexOf("-c");
+        if (colorPos > -1) {
+            // Getting the rgb int
+            int rgb = Integer.parseInt(args.get(colorPos + 1).replaceAll("#", ""));
+
+            // Changing the color to the specified value
+            pattern.setColor(new Color(rgb));
+        }
+
+        // Checking if the del tag has been used.
+        int durationPos = args.indexOf("-d");
+        // Since this tag can be repeated, we will make a loop to find all instances of it.
+        if (durationPos > -1) {
+            // Changing the pattern duration.
+            pattern.setDuration(Integer.parseInt(args.get(durationPos + 1)));
+        }
+
+        // Checking if the name has been specified.
+        int namePos = args.indexOf("-n");
+        if (namePos > -1) {
+            // Changing the name of the pattern.
+            patternDict.remove(patternName);
+            patternDict.put(args.get(namePos + 1), pattern);
+        }
+
+        // Checking if the remove tag has been used.
+        int remPos = args.indexOf("-r");
+        // Since this tag can be repeated, we will make a loop to find all instances of it.
+        while (remPos > -1) {
+            // Removing the light names from the array.
+            pattern.delLight(args.get(remPos + 1));
+
+            // Removing this remove tag and its value
+            args.remove(remPos);
+            args.remove(remPos);
+
+            // Checking for another remove tag
+            remPos = args.indexOf("-r");
+        }
+
+        // Checking if the state has been specified.
+        int statePos = args.indexOf("-s");
+        if (statePos > -1) {
+            // Changing the state of the pattern.
+            switch (args.get(statePos + 1).toLowerCase()) {
+                case "1", "true":
+                    pattern.setState(true);
+                    break;
+                case "0", "false":
+                    pattern.setState(false);
+                    break;
+            }
+        }
     }
 
     /**
