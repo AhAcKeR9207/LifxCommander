@@ -1,11 +1,11 @@
-package control.lifx;
+package control.lifx.Input;
 
 import static control.lifx.Dynamic.commands;
 
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-public class InputManager {
+public class Manager {
     Scanner scanner = new Scanner(System.in);
 
     /**
