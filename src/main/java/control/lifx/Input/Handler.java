@@ -159,7 +159,7 @@ public class Handler {
             return;
         }
 
-        // Adding the light to the dictionary in Dynamic
+        // Removing the light from the dictionary in Dynamic
         lightDict.remove(lightName);
     }
 
