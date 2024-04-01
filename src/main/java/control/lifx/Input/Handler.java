@@ -2,6 +2,8 @@ package control.lifx.Input;
 
 import static control.lifx.Dynamic.lightDict;
 import static control.lifx.Dynamic.patternDict;
+import static control.lifx.Dynamic.patternGroupDict;
+import static control.lifx.Dynamic.sequenceDict;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -360,7 +362,7 @@ public class Handler {
             return;
         }
 
-        // Removing the patterm from the dictionary in Dynamic
+        // Removing the pattern from the dictionary in Dynamic
         patternDict.remove(patternName);
     }
 
@@ -388,7 +390,19 @@ public class Handler {
      * @param args A list of arguments for the command.
      */
     public static void delPatternGroup(ArrayList<String> args) {
+        // Getting required parameters from args.
+        String patternGroupName = args.get(0);
 
+        // Checking if the help tag has been used.
+        int helpPos = args.indexOf("-h");
+        if (helpPos > -1) {
+            // Prints the help message and returns to the InputManager.
+            helpMsg("delPatternGroup");
+            return;
+        }
+
+        // Removing the patternGroup from the dictionary in Dynamic
+        patternGroupDict.remove(patternGroupName);
     }
 
     /**
@@ -415,7 +429,19 @@ public class Handler {
      * @param args A list of arguments for the command.
      */
     public static void delSequence(ArrayList<String> args) {
+        // Getting required parameters from args.
+        String sequenceName = args.get(0);
 
+        // Checking if the help tag has been used.
+        int helpPos = args.indexOf("-h");
+        if (helpPos > -1) {
+            // Prints the help message and returns to the InputManager.
+            helpMsg("delSequence");
+            return;
+        }
+
+        // Removing the sequence from the dictionary in Dynamic
+        sequenceDict.remove(sequenceName);
     }
 
     /**
