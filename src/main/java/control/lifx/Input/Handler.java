@@ -349,7 +349,19 @@ public class Handler {
      * 
      */
     public static void delPattern(ArrayList<String> args) {
+        // Getting required parameters from args.
+        String patternName = args.get(0);
 
+        // Checking if the help tag has been used.
+        int helpPos = args.indexOf("-h");
+        if (helpPos > -1) {
+            // Prints the help message and returns to the InputManager.
+            helpMsg("delPattern");
+            return;
+        }
+
+        // Removing the patterm from the dictionary in Dynamic
+        patternDict.remove(patternName);
     }
 
     /**
