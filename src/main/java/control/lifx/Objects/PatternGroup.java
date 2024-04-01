@@ -21,10 +21,12 @@ public class PatternGroup { // extends Aliasable {
      * This class allows users to group patterns together so they run one after the other or all at once.
      * 
      * @param patternNames An arraylist of the names of every Pattern that this PatternGroup will use.
+     * @param duration The amount of time that the PatternGroup will be active.
      * @param type The type of PatternGroup this object is. (Sequential is everything one after the other, Parallel is all at once)
      */
-    public PatternGroup(ArrayList<String> patternNames, PatternType type) {
+    public PatternGroup(ArrayList<String> patternNames, double duration, PatternType type) {
         this.patternNames = patternNames;
+        this.duration = duration;
         this.type = type;
     }
 
