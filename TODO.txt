@@ -1,5 +1,10 @@
 -- TODO
     Add the rest of the native commands.
-    Allow command chaining using "&&" or semicolons.
+    Have the InputValidator.java class handle input validation.
     Add the input loop.
+    Allow command chaining using "&&" or semicolons.
+    Add aliases? -- Difficult to do at this stage...
     Send TCP requests to lights based off of the commands that have run.
+    Make custom errors?
+    Maybe I could give the user more control over the sequences by giving them a timeline that they can place patterns along.
+    If two patterns overlap, should I make it throw an error or have one take priority over the other?
