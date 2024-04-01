@@ -57,7 +57,7 @@ Group Types:
     Sequential mode: Runs each pattern one after the other, ending when the patterns finish or the duration of the pattern group expires.
 Usage: addPatternGroup <groupName> [options...]
         -a <patternName>    The name of the patterns to add to the group (can be repeated)
-        -d <duration>        The amount of time the pattern group should run in seconds (overrides any previous times set)
+        -d <duration>        The amount of time the pattern group should run in seconds (overrides any previous times unless set to 0)
         -h                  Displays this help message
         -t <groupType>      The new type of the pattern group
 
@@ -70,7 +70,7 @@ Group Types:
     Sequential mode: Runs each pattern one after the other, ending when the patterns finish or the duration of the pattern group expires.
 Usage: modPatternGroup <groupName> [options...]
         -a <patternName>    The name of any patterns to add to the group (can be repeated)
-        -d <duration>        The amount of time the pattern group should run in seconds (overrides any previous times set)
+        -d <duration>        The amount of time the pattern group should run in seconds (overrides any previous times unless set to 0)
         -h                  Displays this help message
         -n <groupName>      The new name of the pattern group
         -r <patternName>    The name of any patterns to remove from the group (can be repeated)
@@ -87,14 +87,14 @@ Usage: addSequence <sequenceName>
         -a <patternName>    The name of a pattern or pattern group to add to the sequence (can be repeated)
                             Check the help page of the "addPatternGroup" or "modPatternGroup" commands for info
                             on patternGroups and running two patterns at once.
-        -d <duration>        The amount of time the sequence should run in seconds (overrides any previous times set)
+        -d <duration>        The amount of time the sequence should run in seconds (overrides any previous times unless set to 0)
         -h                  Displays this help message
 
 Command: modSequence
 Function: Allows users to modify attributes of a sequence such as its name, affected patterns, and duration.
 Usage: modSequence <sequenceName> [options...]
         -a <patternName>     The name of a pattern or pattern group to add to the sequence (can be repeated)
-        -d <duration>         The amount of time the pattern group should run in seconds (overrides any previous times set)
+        -d <duration>         The amount of time the pattern group should run in seconds (overrides any previous times unless set to 0)
         -h                   Displays this help message
         -n <sequenceName>    The new name of the sequence.
         -r <patternName>     The name of a pattern or pattern group to remove from the sequence (can be repeated)
@@ -107,7 +107,7 @@ Usage: delSequence <sequenceName>
 Command: runSequence
 Function: Runs the specified sequence.
 Usage: runSequence <sequenceName> [options...]
-        -d <duration>    The amount of time the pattern group should run in seconds (overrides any previous times set)
+        -d <duration>    The amount of time the pattern group should run in seconds (overrides any previous times unless set to 0)
         -h               Displays this help message
 
 Command: alias
