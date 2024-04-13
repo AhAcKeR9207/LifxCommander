@@ -14,6 +14,7 @@ import control.lifx.Objects.Light;
 import control.lifx.Objects.Pattern;
 import control.lifx.Objects.PatternGroup;
 import control.lifx.Objects.Sequence;
+import control.lifx.Objects.PatternGroup.PatternType;
 
 /**
  * Despite the similarity in naming conventions, this class does not interact with the Java Native Interface.
@@ -372,7 +373,63 @@ public class Handler {
      * @param args A list of arguments for the command.
      */
     public static void addPatternGroup(ArrayList<String> args) {
+        // Getting required parameters from args.
+        String patternGroupName = args.get(0);
 
+        // All other parameters are given their default values
+        ArrayList<String> patternNames = new ArrayList<>();
+        double duration = 0;
+        PatternType type = PatternType.Sequential;
+
+        // Checking if the help tag has been used.
+        int helpPos = args.indexOf("-h");
+        if (helpPos > -1) {
+            // Prints the help message and returns to the InputManager.
+            helpMsg("addPatternGroup");
+            return;
+        }
+
+        // Checking if the add tag has been used.
+        int addPos = args.indexOf("-a");
+        // Since this tag can be repeated, we will make a loop to find all instances of it.
+        while (addPos > -1) {
+            // Adding the light names to the array.
+            patternNames.add(args.get(addPos + 1));
+
+            // Removing this add tag and its value
+            args.remove(addPos);
+            args.remove(addPos);
+
+            // Checking for another add tag
+            addPos = args.indexOf("-a");
+        }
+
+        // Checking if the duration tag has been used.
+        int durationPos = args.indexOf("-d");
+        if (durationPos > -1) {
+            // Changing the duration to the specified value.
+            duration = Integer.parseInt(args.get(durationPos + 1));
+        }
+
+        // Checking if the type tag has been used.
+        int typePos = args.indexOf("-t");
+        if (typePos > -1) {
+            // Changing the state to the specified value.
+            switch(args.get(typePos + 1)) {
+                case "sequential":
+                    type = PatternType.Sequential;
+                    break;
+                case "parallel":
+                    type = PatternType.Parallel;
+                    break;
+                default:
+                    type = PatternType.Sequential;
+                    break;
+            }
+        }
+
+        // Adding the new pattern group to the dictionary in Dynamic.
+        Dynamic.patternGroupDict.put(patternGroupName, new PatternGroup(patternNames, duration, type));
     }
 
     /**
@@ -411,7 +468,45 @@ public class Handler {
      * @param args A list of arguments for the command.
      */
     public static void addSequence(ArrayList<String> args) {
+        // Getting required parameters from args.
+        String sequenceName = args.get(0);
 
+        // All other parameters are given their default values
+        ArrayList<String> patternNames = new ArrayList<>();
+        double duration = 0;
+
+        // Checking if the help tag has been used.
+        int helpPos = args.indexOf("-h");
+        if (helpPos != -1) {
+            // Prints the help message and returns to the InputManager.
+            helpMsg("addSequence");
+            return;
+        }
+
+        // Checking if the add tag has been used.
+        int addPos = args.indexOf("-a");
+        // Since this tag can be repeated, we will make a loop to find all instances of it.
+        while (addPos != -1) {
+            // Adding the pattern names to the array.
+            patternNames.add(args.get(addPos + 1));
+
+            // Removing this add tag and its value.
+            args.remove(addPos);
+            args.remove(addPos);
+
+            // Checking for another add tag.
+            addPos = args.indexOf("-a");
+        }
+
+        // Checking if the duration tag has been used.
+        int durationPos = args.indexOf("-d");
+        if (durationPos != -1) {
+            // Changing the duration to the specified value.
+            duration = Integer.parseInt(args.get(durationPos + 1));
+        }
+
+        // Adding the new pattern to the dictionary in Dynamic.
+        Dynamic.sequenceDict.put(sequenceName, new Sequence(patternNames, duration));
     }
 
     /**
