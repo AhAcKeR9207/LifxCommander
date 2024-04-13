@@ -37,7 +37,7 @@ public class Handler {
 
         // Checking if the help tag has been used.
         int helpPos = args.indexOf("-h");
-        if (helpPos > -1) {
+        if (helpPos != -1) {
             // Printing the help message and returns to the InputManager.
             helpMsg("addLight");
             return;
@@ -45,14 +45,14 @@ public class Handler {
 
         // Checking if the brightness has been specified.
         int brightnessPos = args.indexOf("-b");
-        if (brightnessPos > -1) {
+        if (brightnessPos != -1) {
             // Changing the brightness to the specified value.
             brightness = Integer.parseInt(args.get(brightnessPos + 1));
         }
 
         // Checking if the color has been specified.
         int colorPos = args.indexOf("-c");
-        if (colorPos > -1) {
+        if (colorPos != -1) {
             // Getting the rgb int
             int rgb = Integer.parseInt(args.get(colorPos + 1).replaceAll("#", ""));
 
@@ -62,7 +62,7 @@ public class Handler {
 
         // Checking if the state has been specified.
         int statePos = args.indexOf("-s");
-        if (statePos > -1) {
+        if (statePos != -1) {
             // Switching the value of the state command.
             switch (args.get(statePos + 1).toLowerCase()) {
                 case "1", "true":
@@ -92,7 +92,7 @@ public class Handler {
         
         // Checking if the help tag has been used.
         int helpPos = args.indexOf("-h");
-        if (helpPos > -1) {
+        if (helpPos != -1) {
             // Printing the help message and returning to the InputManager.
             helpMsg("modLight");
             return;
@@ -100,14 +100,14 @@ public class Handler {
 
         // Checking if the brightness has been specified.
         int brightnessPos = args.indexOf("-b");
-        if (brightnessPos > -1) {
+        if (brightnessPos != -1) {
             // Changing the brightness to the specified value
             light.setBrightness(Integer.parseInt(args.get(brightnessPos + 1)));
         }
 
         // Checking if the color has been specified.
         int colorPos = args.indexOf("-c");
-        if (colorPos > -1) {
+        if (colorPos != -1) {
             // Getting the rgb int
             int rgb = Integer.parseInt(args.get(colorPos + 1).replaceAll("#", ""));
 
@@ -117,14 +117,14 @@ public class Handler {
 
         // Checking if the IP address has been specified.
         int ipPos = args.indexOf("-i");
-        if (ipPos > -1) {
+        if (ipPos != -1) {
             // Changing the IP address of the light.
             light.setIP(args.get(ipPos + 1));
         }
 
         // Checking if the name has been specified.
         int namePos = args.indexOf("-n");
-        if (namePos > -1) {
+        if (namePos != -1) {
             // Changing the name of the light.
             lightDict.remove(lightName);
             lightDict.put(args.get(namePos + 1), light);
@@ -132,7 +132,7 @@ public class Handler {
 
         // Checking if the state has been specified.
         int statePos = args.indexOf("-s");
-        if (statePos > -1) {
+        if (statePos != -1) {
             // Changing the state of the light.
             switch (args.get(statePos + 1).toLowerCase()) {
                 case "1", "true":
@@ -156,7 +156,7 @@ public class Handler {
 
         // Checking if the help tag has been used.
         int helpPos = args.indexOf("-h");
-        if (helpPos > -1) {
+        if (helpPos != -1) {
             // Prints the help message and returns to the InputManager.
             helpMsg("delLight");
             return;
@@ -184,7 +184,7 @@ public class Handler {
 
         // Checking if the help tag has been used.
         int helpPos = args.indexOf("-h");
-        if (helpPos > -1) {
+        if (helpPos != -1) {
             // Prints the help message and returns to the InputManager.
             helpMsg("addPattern");
             return;
@@ -193,7 +193,7 @@ public class Handler {
         // Checking if the add tag has been used.
         int addPos = args.indexOf("-a");
         // Since this tag can be repeated, we will make a loop to find all instances of it.
-        while (addPos > -1) {
+        while (addPos != -1) {
             // Adding the light names to the array.
             lightNames.add(args.get(addPos + 1));
 
@@ -207,14 +207,14 @@ public class Handler {
 
         // Checking if the brightness tag has been used.
         int brightnessPos = args.indexOf("-b");
-        if (brightnessPos > -1) {
+        if (brightnessPos != -1) {
             // Changing the brightness to the specified value.
             brightness = Integer.parseInt(args.get(brightnessPos + 1));
         }
 
         // Checking if the color tag has been used.
         int colorPos = args.indexOf("-c");
-        if (colorPos > -1) {
+        if (colorPos != -1) {
             // Getting the rgb int
             int rgb = Integer.parseInt(args.get(colorPos + 1).replaceAll("#", ""));
 
@@ -224,14 +224,14 @@ public class Handler {
 
         // Checking if the help tag has been used.
         int durationPos = args.indexOf("-d");
-        if (durationPos > -1) {
+        if (durationPos != -1) {
             // Changing the duration to the specified value.
             duration = Integer.parseInt(args.get(durationPos + 1));
         }
 
         // Checking if the help tag has been used.
         int statePos = args.indexOf("-s");
-        if (statePos > -1) {
+        if (statePos != -1) {
             // Changing the state to the specified value.
             switch(args.get(statePos + 1)) {
                 case "1", "true":
@@ -261,7 +261,7 @@ public class Handler {
         
         // Checking if the help tag has been used.
         int helpPos = args.indexOf("-h");
-        if (helpPos > -1) {
+        if (helpPos != -1) {
             // Printing the help message and returning to the InputManager.
             helpMsg("modPattern");
             return;
@@ -270,7 +270,7 @@ public class Handler {
         // Checking if the add tag has been used.
         int addPos = args.indexOf("-a");
         // Since this tag can be repeated, we will make a loop to find all instances of it.
-        while (addPos > -1) {
+        while (addPos != -1) {
             // Adding the light names to the array.
             pattern.addLight(args.get(addPos + 1));
 
@@ -285,14 +285,14 @@ public class Handler {
 
         // Checking if the brightness has been specified.
         int brightnessPos = args.indexOf("-b");
-        if (brightnessPos > -1) {
+        if (brightnessPos != -1) {
             // Changing the brightness to the specified value
             pattern.setBrightness(Integer.parseInt(args.get(brightnessPos + 1)));
         }
 
         // Checking if the color has been specified.
         int colorPos = args.indexOf("-c");
-        if (colorPos > -1) {
+        if (colorPos != -1) {
             // Getting the rgb int
             int rgb = Integer.parseInt(args.get(colorPos + 1).replaceAll("#", ""));
 
@@ -303,14 +303,14 @@ public class Handler {
         // Checking if the del tag has been used.
         int durationPos = args.indexOf("-d");
         // Since this tag can be repeated, we will make a loop to find all instances of it.
-        if (durationPos > -1) {
+        if (durationPos != -1) {
             // Changing the pattern duration.
             pattern.setDuration(Integer.parseInt(args.get(durationPos + 1)));
         }
 
         // Checking if the name has been specified.
         int namePos = args.indexOf("-n");
-        if (namePos > -1) {
+        if (namePos != -1) {
             // Changing the name of the pattern.
             patternDict.remove(patternName);
             patternDict.put(args.get(namePos + 1), pattern);
@@ -319,7 +319,7 @@ public class Handler {
         // Checking if the remove tag has been used.
         int remPos = args.indexOf("-r");
         // Since this tag can be repeated, we will make a loop to find all instances of it.
-        while (remPos > -1) {
+        while (remPos != -1) {
             // Removing the light names from the array.
             pattern.delLight(args.get(remPos + 1));
 
@@ -333,7 +333,7 @@ public class Handler {
 
         // Checking if the state has been specified.
         int statePos = args.indexOf("-s");
-        if (statePos > -1) {
+        if (statePos != -1) {
             // Changing the state of the pattern.
             switch (args.get(statePos + 1).toLowerCase()) {
                 case "1", "true":
@@ -357,7 +357,7 @@ public class Handler {
 
         // Checking if the help tag has been used.
         int helpPos = args.indexOf("-h");
-        if (helpPos > -1) {
+        if (helpPos != -1) {
             // Prints the help message and returns to the InputManager.
             helpMsg("delPattern");
             return;
@@ -383,7 +383,7 @@ public class Handler {
 
         // Checking if the help tag has been used.
         int helpPos = args.indexOf("-h");
-        if (helpPos > -1) {
+        if (helpPos != -1) {
             // Prints the help message and returns to the InputManager.
             helpMsg("addPatternGroup");
             return;
@@ -392,7 +392,7 @@ public class Handler {
         // Checking if the add tag has been used.
         int addPos = args.indexOf("-a");
         // Since this tag can be repeated, we will make a loop to find all instances of it.
-        while (addPos > -1) {
+        while (addPos != -1) {
             // Adding the light names to the array.
             patternNames.add(args.get(addPos + 1));
 
@@ -406,14 +406,14 @@ public class Handler {
 
         // Checking if the duration tag has been used.
         int durationPos = args.indexOf("-d");
-        if (durationPos > -1) {
+        if (durationPos != -1) {
             // Changing the duration to the specified value.
             duration = Integer.parseInt(args.get(durationPos + 1));
         }
 
         // Checking if the type tag has been used.
         int typePos = args.indexOf("-t");
-        if (typePos > -1) {
+        if (typePos != -1) {
             // Changing the state to the specified value.
             switch(args.get(typePos + 1)) {
                 case "sequential":
@@ -452,7 +452,7 @@ public class Handler {
 
         // Checking if the help tag has been used.
         int helpPos = args.indexOf("-h");
-        if (helpPos > -1) {
+        if (helpPos != -1) {
             // Prints the help message and returns to the InputManager.
             helpMsg("delPatternGroup");
             return;
@@ -529,7 +529,7 @@ public class Handler {
 
         // Checking if the help tag has been used.
         int helpPos = args.indexOf("-h");
-        if (helpPos > -1) {
+        if (helpPos != -1) {
             // Prints the help message and returns to the InputManager.
             helpMsg("delSequence");
             return;
