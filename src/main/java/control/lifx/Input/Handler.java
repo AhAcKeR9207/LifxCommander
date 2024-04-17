@@ -580,7 +580,57 @@ public class Handler {
      * @param args A list of arguments for the command.
      */
     public static void modSequence(ArrayList<String> args) {
+        // Getting the sequence to edit
+        Sequence sequence = sequenceDict.get(args.get(0));
 
+        // Checking if the help tag has been used.
+        int helpPos = args.indexOf("-h");
+        if (helpPos != -1) {
+            // Prints the help message and returns to the InputManager.
+            helpMsg("modSequence");
+            return;
+        }
+
+        // Checking if the add tag has been used.
+        int addPos = args.indexOf("-a");
+        while (addPos != -1) {
+            // Removing the pattern from the pattern group.
+            sequence.delPattern(args.get(addPos + 1));
+
+            // Removing the used args and finding the next index of "-r"
+            args.remove(addPos);
+            args.remove(addPos);
+            addPos = args.indexOf("-r");
+        }
+
+        // Checking if the help tag has been used.
+        int durationPos = args.indexOf("-h");
+        if (durationPos != -1) {
+            // Adjusting the duration of the sequence.
+            sequence.setDuration(Double.parseDouble(args.get(durationPos + 1)));
+        }
+
+        // Checking if the help tag has been used.
+        int namePos = args.indexOf("-h");
+        if (namePos != -1) {
+            // Removing the sequence from the sequenceDict
+            sequenceDict.remove(args.get(0));
+
+            // Adding the sequence back to the sequenceDict under its new name.
+            sequenceDict.put(args.get(namePos + 1), sequence);
+        }
+
+        // Checking if the help tag has been used.
+        int removePos = args.indexOf("-r");
+        while (removePos != -1) {
+            // Removing the pattern from the pattern group.
+            sequence.delPattern(args.get(removePos + 1));
+
+            // Removing the used args and finding the next index of "-r"
+            args.remove(removePos);
+            args.remove(removePos);
+            removePos = args.indexOf("-r");
+        }
     }
 
     /**
