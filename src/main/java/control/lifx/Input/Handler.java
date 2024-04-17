@@ -438,7 +438,72 @@ public class Handler {
      * @param args A list of arguments for the command.
      */
     public static void modPatternGroup(ArrayList<String> args) {
+        // Getting the patternGroup to edit
+        PatternGroup patternGroup = patternGroupDict.get(args.get(0));
 
+        // Checking if the help tag has been used.
+        int helpPos = args.indexOf("-h");
+        if (helpPos != -1) {
+            // Prints the help message and returns to the InputManager.
+            helpMsg("delPatternGroup");
+            return;
+        }
+
+        // Checking if the add tag has been used.
+        // Since this tag can be repeated, we will make a loop to find all instances of it.
+        int addPos = args.indexOf("-a");
+        while (addPos != -1) {
+            // Adding the pattern to the pattern group.
+            patternGroup.addPattern(args.get(addPos + 1));
+
+            // Removing the used args and finding the next index of "-a"
+            args.remove(addPos);
+            args.remove(addPos);
+            addPos = args.indexOf("-a");
+        }
+
+        // Checking if the duration tag has been used.
+        int durationPos = args.indexOf("-d");
+        if (durationPos != -1) {
+            // Changing the duration of the patternGroup
+            patternGroup.setDuration(Double.parseDouble(args.get(durationPos + 1)));
+        }
+
+        // Checking if the name tag has been used.
+        int namePos = args.indexOf("-n");
+        if (namePos != -1) {
+            // Removing the patternGroup from the table
+            patternGroupDict.remove(args.get(0));
+
+            // Adding the patternGroup back to the table under its new name
+            patternGroupDict.put(args.get(namePos + 1), patternGroup);
+        }
+
+        // Checking if the remove tag has been used.
+        // Since this tag can be repeated, we will make a loop to find all instances of it.
+        int removePos = args.indexOf("-r");
+        while (removePos != -1) {
+            // Removing the pattern from the pattern group.
+            patternGroup.delPattern(args.get(removePos + 1));
+
+            // Removing the used args and finding the next index of "-r"
+            args.remove(removePos);
+            args.remove(removePos);
+            removePos = args.indexOf("-r");
+        }
+
+        // Checking if the group tag has been used.
+        int groupPos = args.indexOf("-t");
+        if (groupPos != -1) {
+            // Adjusting the patternGroup type if needed
+            switch (args.get(groupPos + 1).toLowerCase()) {
+                case "parallel":
+                    patternGroup.setType(PatternType.Parallel);
+                    break;
+                case "sequential":
+                    patternGroup.setType(PatternType.Sequential);
+            }
+        }
     }
 
     /**
